@@ -18,6 +18,17 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get(
+  "/now",
+  function(req, res, next) {
+    req.time = new Date().toString();
+    next();
+  },
+  function(req, res) {
+    res.json({ time: req.time });
+  }
+);
+
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
